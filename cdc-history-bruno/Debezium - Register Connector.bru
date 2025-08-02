@@ -1,0 +1,43 @@
+meta {
+  name: Debezium - Register Connector
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{debezium-url}}/connectors
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+      "name": "postgres-debezium-connector",
+      "config": {
+        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+        "database.hostname": "db",
+        "database.port": "5432",
+        "database.user": "postgres",
+        "database.password": "postgres",
+        "database.dbname": "postgres",
+        "database.server.name": "db",
+        "slot.name": "debezium_slot",
+        "plugin.name": "pgoutput",
+        "publication.name": "debezium_pub",
+        "database.include.schema.changes": "false",
+        "table.include.list": "public.owner,public.cars",
+        "topic.prefix": "db",
+        "topic.creation.default.replication.factor": 1,
+        "topic.creation.default.partitions": 4,
+        "topic.creation.default.cleanup.policy": "delete"
+      }
+    }
+}
+
+settings {
+  encodeUrl: true
+}
