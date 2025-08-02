@@ -1,0 +1,74 @@
+### Java ###
+*.class
+*.log
+*.jar
+*.war
+*.nar
+*.ear
+hs_err_pid*
+replay_pid*
+
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+### Gradle ###
+.gradle/
+build/
+!gradle-wrapper.jar
+gradle-app.setting
+
+# Kotlin DSL artifacts
+*.kotlin_module
+
+# Gradle cache
+.gradle/
+**/build/
+**/.gradle/
+
+### Spring Boot ###
+# Local environment configs
+*.env
+*.dev.properties
+application-local.properties
+application-dev.yml
+application-dev.yaml
+
+### IDEs ###
+# IntelliJ
+.idea/
+*.iml
+*.iws
+out/
+
+# VSCode
+.vscode/
+
+### OS Specific ###
+.DS_Store
+Thumbs.db
+
+### Logs ###
+logs/
+*.log
+*.out
+
+### Docker ###
+*.pid
+docker-compose.override.yml
+.env
+docker/volumes/
+
+### Tests ###
+test-output/
+surefire-reports/
+
+### Others ###
+*.swp
+*.swo
+*.bak
+*.tmp
