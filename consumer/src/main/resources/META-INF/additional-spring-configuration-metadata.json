@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "application.topic-owner",
+  "type": "java.lang.String",
+  "description": "Topic name for CDC changes on owner table"
+}]}

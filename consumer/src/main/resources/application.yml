@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: consumer
+  datasource:
+    url: jdbc:postgresql://db:5432/postgres
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        "[default_schema]": history
+  kafka:
+    bootstrap-servers:
+    - kafka:9092
+    consumer:
+      group-id: history-consumer
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+    listener:
+      ack-mode: manual-immediate
+      poll-timeout: 3000
+    properties:
+      "[spring.deserializer.value.delegate.class]": local.cdc.consumer.deserializer.OwnerChangesMessageDeserializer
+    
+application:
+  topic-owner: db.public.owner
