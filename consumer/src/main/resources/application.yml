@@ -16,9 +16,11 @@ spring:
     consumer:
       group-id: history-consumer
       enable-auto-commit: false
+      auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
     listener:
+      missing-topics-fatal: true
       ack-mode: manual-immediate
       poll-timeout: 3000
     properties:
