@@ -7,34 +7,34 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 
+import local.cdc.consumer.pojo.CarData;
 import local.cdc.consumer.pojo.DebeziumChangeEvent;
-import local.cdc.consumer.pojo.OwnerData;
 import local.cdc.consumer.service.HistoryRecorder;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class OwnerChangesMessageListener extends AbstractMessageListener<OwnerData> {
+public class CarChangesMessageListener extends AbstractMessageListener<CarData> {
 
     private final HistoryRecorder historyRecorder;
 
-    public OwnerChangesMessageListener(HistoryRecorder historyRecorder) {
+    public CarChangesMessageListener(HistoryRecorder historyRecorder) {
         super();
         this.historyRecorder = historyRecorder;
     }
 
     @KafkaListener(
-        topics = "${application.topic-owner}",
-        groupId = "${application.owner-group-id}",
+        topics = "${application.topic-cars}",
+        groupId = "${application.cars-group-id}",
         batch = "true",
-        containerFactory = "ownerKafkaListenerContainerFactory"
+        containerFactory = "carsKafkaListenerContainerFactory"
     )
-    public void onOwnerMessage(List<ConsumerRecord<String, DebeziumChangeEvent<OwnerData>>> records, Acknowledgment acknowledgment) {
+    public void processRecords(List<ConsumerRecord<String, DebeziumChangeEvent<CarData>>> records, Acknowledgment acknowledgment) {
         super.processRecords(records, acknowledgment);
     }
 
     @Override
-    protected void handleUpdate(OwnerData value) {
+    protected void handleUpdate(CarData value) {
         historyRecorder.recordChange(value);
     }
 }

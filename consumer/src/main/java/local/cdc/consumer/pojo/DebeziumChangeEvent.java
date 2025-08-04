@@ -3,7 +3,7 @@ package local.cdc.consumer.pojo;
 import lombok.Data;
 
 @Data
-public class DebeziumChangeEvent {
+public class DebeziumChangeEvent<T extends AbstractData> {
     public Schema schema;
-    public Payload payload;
+    public Payload<T> payload;
 }

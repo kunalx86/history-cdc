@@ -14,7 +14,6 @@ spring:
     bootstrap-servers:
     - kafka:9092
     consumer:
-      group-id: history-consumer
       enable-auto-commit: false
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
@@ -23,8 +22,9 @@ spring:
       missing-topics-fatal: true
       ack-mode: manual-immediate
       poll-timeout: 3000
-    properties:
-      "[spring.deserializer.value.delegate.class]": local.cdc.consumer.deserializer.OwnerChangesMessageDeserializer
     
 application:
   topic-owner: db.public.owner
+  owner-group-id: history-owner-consumer
+  topic-cars: db.public.cars
+  cars-group-id: history-cars-consumer

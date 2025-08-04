@@ -1,5 +1,22 @@
-{"properties": [{
-  "name": "application.topic-owner",
-  "type": "java.lang.String",
-  "description": "Topic name for CDC changes on owner table"
-}]}
+{"properties": [
+  {
+    "name": "application.topic-owner",
+    "type": "java.lang.String",
+    "description": "Topic name for CDC changes on owner table"
+  },
+  {
+    "name": "application.cars-group-id",
+    "type": "java.lang.String",
+    "description": "Consumer group ID for car topic"
+  },
+  {
+    "name": "application.topic-cars",
+    "type": "java.lang.String",
+    "description": "Topic name for CDC changes on cars table"
+  },
+  {
+    "name": "application.owner-group-id",
+    "type": "java.lang.String",
+    "description": "Consumer group ID for owner topic"
+  }
+]}

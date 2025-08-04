@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class Payload {
-    public OwnerData before;
-    public OwnerData after;
+public class Payload<T extends AbstractData> {
+    public T before;
+    public T after;
     public Source source;
     public String op;
     
